@@ -52,4 +52,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+
+# Clangd/LSP related files
+.cache
 compile_commands.json
