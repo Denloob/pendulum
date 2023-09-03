@@ -10,7 +10,7 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
     SDL_Renderer *renderer = NULL;
 
     init_sdl(&window, &renderer);
-    pendulum_simulation_run(renderer);
+    pendulum_simulation_run(window);
     quit_sdl(window, renderer);
 
     return EXIT_SUCCESS;
