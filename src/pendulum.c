@@ -1,4 +1,5 @@
 #include "SDL.h"
+#include "SDL2_framerate.h"
 #include "SDL2_gfxPrimitives.h"
 #include "pendulum.h"
 #include "utils.h"
@@ -35,6 +36,9 @@ void pendulum_simulation_run(SDL_Window *window)
     if (!renderer)
         die("SDL_GetRenderer: %s", SDL_GetError());
 
+    FPSmanager fps_manager = {0};
+    SDL_initFramerate(&fps_manager);
+
     bool done = false;
     while (!done)
     {
@@ -51,6 +55,7 @@ void pendulum_simulation_run(SDL_Window *window)
         pendulum_draw(pendulum, renderer);
 
         SDL_RenderPresent(renderer);
+        SDL_framerateDelay(&fps_manager);
     }
 
     pendulum_destroy(pendulum);
