@@ -2,9 +2,11 @@ SRC_DIR = src
 BIN_DIR = bin
 DEP_DIR = .deps
 
+LIBS = sdl2
+
 CC = gcc
-CFLAGS = -g -Wall -Wextra -std=gnu2x $(shell pkg-config --cflags sdl2) -I$(SRC_DIR)
-LDFLAGS = $(shell pkg-config --libs sdl2) -lm
+CFLAGS = -g -Wall -Wextra -std=gnu2x $(shell pkg-config --cflags $(LIBS)) -I$(SRC_DIR)
+LDFLAGS = $(shell pkg-config --libs $(LIBS)) -lm
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 
 TARGET = pendulum
