@@ -52,6 +52,7 @@ void pendulum_simulation_run(SDL_Window *window)
                 done = true;
         }
 
+        pendulum_tick(pendulum);
         pendulum_draw(pendulum, renderer);
 
         SDL_RenderPresent(renderer);
@@ -61,12 +62,21 @@ void pendulum_simulation_run(SDL_Window *window)
     pendulum_destroy(pendulum);
 }
 
+void pendulum_tick(Pendulum *pendulum)
+{
+    float pendulum_force = -sin(pendulum->arm_angle) * GRAVITY / pendulum->arm_length;
+    pendulum->rotational_velocity += pendulum_force;
+    pendulum->arm_angle += pendulum->rotational_velocity;
+}
+
 Pendulum *pendulum_create(SDL_FPoint pos, float length, SDL_Color arm_color,
-                          float bob_radius, SDL_Color bob_color)
+                          float bob_radius, SDL_Color bob_color,
+                          float starting_angle)
 {
     Pendulum *pendulum = xmalloc(sizeof(*pendulum));
     pendulum->pos = pos;
-    pendulum->arm_angle = 0;
+    pendulum->rotational_velocity = 0;
+    pendulum->arm_angle = starting_angle;
     pendulum->arm_length = length;
     pendulum->arm_color = arm_color;
     pendulum->bob_radius = bob_radius;
@@ -87,7 +97,7 @@ Pendulum *pendulum_create_default_for(SDL_Window *window)
 
     return pendulum_create(pendulum_pivot_pos, PENDULUM_ARM_LENGTH,
                            PENDULUM_ARM_COLOR, PENDULUM_BOB_RADIUS,
-                           PENDULUM_BOB_COLOR);
+                           PENDULUM_BOB_COLOR, PENDULUM_STARTING_ANGLE);
 }
 
 void pendulum_destroy(Pendulum *pendulum)
