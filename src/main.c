@@ -1,7 +1,6 @@
 #include "SDL.h"
 #include "main.h"
 #include "pendulum.h"
-#include "stdbool.h"
 #include "utils.h"
 
 int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
