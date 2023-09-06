@@ -132,7 +132,7 @@ static void pendulum_draw_bob(Pendulum *pendulum, SDL_Renderer *renderer,
 {
     SDL_Color color = pendulum->bob_color;
 
-    circleRGBA(renderer, bob_position.x, bob_position.y, pendulum->bob_radius,
+    filledCircleRGBA(renderer, bob_position.x, bob_position.y, pendulum->bob_radius,
                color.r, color.g, color.b, color.a);
 }
 
