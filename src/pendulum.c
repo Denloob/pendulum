@@ -64,7 +64,8 @@ void pendulum_simulation_run(SDL_Window *window)
 
 void pendulum_tick(Pendulum *pendulum)
 {
-    float pendulum_force = -sin(pendulum->arm_angle) * GRAVITY / pendulum->arm_length;
+    float pendulum_force =
+        -sin(pendulum->arm_angle) * GRAVITY / pendulum->arm_length;
     pendulum->rotational_velocity += pendulum_force;
     pendulum->arm_angle += pendulum->rotational_velocity;
 }
@@ -132,8 +133,8 @@ static void pendulum_draw_bob(Pendulum *pendulum, SDL_Renderer *renderer,
 {
     SDL_Color color = pendulum->bob_color;
 
-    filledCircleRGBA(renderer, bob_position.x, bob_position.y, pendulum->bob_radius,
-               color.r, color.g, color.b, color.a);
+    filledCircleRGBA(renderer, bob_position.x, bob_position.y,
+                     pendulum->bob_radius, color.r, color.g, color.b, color.a);
 }
 
 static void pendulum_draw_arm(Pendulum *pendulum, SDL_Renderer *renderer,
