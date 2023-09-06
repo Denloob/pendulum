@@ -16,7 +16,7 @@ For more information please see the [Makefile](./Makefile).
 
 ## Running
 
-After compiling, the you can find the binary at `./bin/pendulum`.
+After compiling, you can find the binary at `./bin/pendulum`.
 You can also use
 ```sh
 make run
